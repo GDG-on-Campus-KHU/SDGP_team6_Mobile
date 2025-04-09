@@ -2,13 +2,11 @@
 name: Basic Issue Template
 about: Basic issue template
 title: ''
-labels: ''
+labels: bug
 assignees: ''
 
 ---
 
-<!-- Basic 이슈 템플릿 -->
----
 ## 🍦 이슈 요약
 <!-- 이슈에 대한 내용을 간략하게 기술합니다 -->
 
