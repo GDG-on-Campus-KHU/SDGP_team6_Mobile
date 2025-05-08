@@ -14,12 +14,13 @@ struct SDGP6App: App {
     
     var body: some Scene {
         WindowGroup {
-            TransactionView()
             AuthenticationView(authViewModel: .init(container: container))
                 .environmentObject(container)
 
             AuthenticationView(authViewModel: .init(container: container))
                 .environmentObject(container)
+            
+            TransactionView()
         }
     }
 }
