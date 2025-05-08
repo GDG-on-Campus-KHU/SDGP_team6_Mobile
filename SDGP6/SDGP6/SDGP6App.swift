@@ -11,7 +11,7 @@ import SwiftUI
 struct SDGP6App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TransactionView()
         }
     }
 }
