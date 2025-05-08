@@ -16,7 +16,7 @@ struct SDGP6App: App {
         WindowGroup {
             AuthenticationView(authViewModel: .init(container: container))
                 .environmentObject(container)
-
+            
             AuthenticationView(authViewModel: .init(container: container))
                 .environmentObject(container)
             
