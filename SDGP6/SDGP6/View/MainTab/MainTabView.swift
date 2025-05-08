@@ -7,7 +7,8 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedTab: MainTabType = .home
+//    @State private var selectedTab: MainTabType = .home
+    @StateObject private var tabBarViewModel = TabBarViewModel()
     
     var body: some View {
 //        TabView(selection: $selectedTab) {
@@ -25,24 +26,24 @@ struct MainTabView: View {
 //            }
 //        }
         
-        TabView(selection: $selectedTab) {
-            UserHomeView()
+        TabView(selection: $tabBarViewModel.selectedTab) {
+            HomeView()
                 .tabItem {
                     Image(
-                        tabBarViewModel.selectedTab == .userHome
-                        ? "ic_home_black"
-                        : "ic_home_gray")
+                        tabBarViewModel.selectedTab == .home
+                        ? "ic_home_bk"
+                        : "ic_home_gr")
                 }
-                .tag(Tab.userHome)
+                .tag(MainTabType.home)
             
-            StudyHomeView()
+            ActivityView()
                 .tabItem {
                     Image(
-                        tabBarViewModel.selectedTab == .studyHome
-                        ? "ic_cal_black"
-                        : "ic_cal_gray")
+                        tabBarViewModel.selectedTab == .activity
+                        ? "ic_activity_bk"
+                        : "ic_activity_gr")
                 }
-                .tag(Tab.studyHome)
+                .tag(MainTabType.activity)
         }
     }
 }
