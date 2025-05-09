@@ -6,7 +6,7 @@ class MockHomeViewModel: ObservableObject {
     @Published var achievements: Int = 2
     @Published var longestStreak: Int = 4
 
-    @Published var weeklyMessage: String = "이번 주 단식 목표에 도전해보세요!"
+    @Published var weeklyMessage: String = "이번 주 탄소 배출량 감량 목표에 도전해보세요!"
 
     @Published var datesWithReduction: [Date: Bool] = [:] // ✅ 날짜별 탄소 절약 여부
 

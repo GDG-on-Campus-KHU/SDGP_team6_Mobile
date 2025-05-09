@@ -18,9 +18,6 @@ struct MainTabView: View {
                         mainTabViewModel.selectedTab == .home
                         ? "ic_home_bk"
                         : "ic_home_gr")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 160, height: 160)
                 }
                 .tag(MainTabType.home)
             
@@ -30,9 +27,6 @@ struct MainTabView: View {
                         mainTabViewModel.selectedTab == .activity
                         ? "ic_activity_bk"
                         : "ic_activity_gr")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 160, height: 160)
                 }
                 .tag(MainTabType.activity)
             
@@ -42,9 +36,6 @@ struct MainTabView: View {
                         mainTabViewModel.selectedTab == .setting
                         ? "ic_setting_bk"
                         : "ic_setting_gr")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 160, height: 160)
                 }
                 .tag(MainTabType.setting)
         }
