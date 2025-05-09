@@ -14,13 +14,12 @@ struct SDGP6App: App {
     
     var body: some Scene {
         WindowGroup {
-            AuthenticationView(authViewModel: .init(container: container))
-                .environmentObject(container)
+//            AuthenticationView(authViewModel: .init(container: container))
+//                .environmentObject(container)
             
-            AuthenticationView(authViewModel: .init(container: container))
-                .environmentObject(container)
+            MainTabView()
             
-            TransactionView()
+//            TransactionView(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidGVzdC11c2VyLTEiLCJleHAiOjE3MDAwMDAwMDB9.abc123signature")
         }
     }
 }

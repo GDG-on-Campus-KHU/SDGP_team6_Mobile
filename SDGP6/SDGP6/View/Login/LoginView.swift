@@ -8,6 +8,10 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
+    @State private var email = ""
+    @State private var password = ""
+    @State private var showEmailForm = false
+    @State private var isSignup = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -22,27 +26,75 @@ struct LoginView: View {
             }
             .padding(.horizontal, 30)
             
+            if showEmailForm {
+                emailLoginForm
+            }
+            
             Spacer()
             
             VStack {
                 Button {
-                    //TODO: 이메일로 로그인
+                    showEmailForm.toggle()
                 } label: {
-                    Text("이메일로 로그인")
+                    Text(showEmailForm ? "다른 로그인 방법" : "이메일로 로그인")
                 }.buttonStyle(LoginButtonStyle(textColor: .teal))
                 
-                Button {
-                    authViewModel.send(action: .googleLogin)
-                } label: {
-                    Text("Google로 로그인")
+                if !showEmailForm {
+                    Button {
+                        authViewModel.send(action: .googleLogin)
+                    } label: {
+                        Text("Google로 로그인")
+                    }
+                    .buttonStyle(LoginButtonStyle(textColor: .black, borderColor: .gray))
                 }
-                .buttonStyle(LoginButtonStyle(textColor: .black, borderColor: .gray))
             }
-            .padding(.bottom,  30)
+            .padding(.bottom, 30)
         }
+        .overlay(
+            Group {
+                if authViewModel.isLoading {
+                    ProgressView()
+                        .scaleEffect(1.5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.black.opacity(0.3))
+                        .ignoresSafeArea()
+                }
+            }
+        )
     }
-}
-
-#Preview {
-    LoginView()
+    
+    private var emailLoginForm: some View {
+        VStack(spacing: 15) {
+            TextField("이메일", text: $email)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.emailAddress)
+                .autocapitalization(.none)
+                .padding(.horizontal)
+            
+            SecureField("비밀번호", text: $password)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.horizontal)
+            
+            if let errorMessage = authViewModel.errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .font(.caption)
+                    .padding(.horizontal)
+            }
+            
+            Button {
+                authViewModel.send(action: .emailLogin(email: email, password: password))
+            } label: {
+                Text("로그인")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.teal)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }
+            .padding(.horizontal)
+            .disabled(email.isEmpty || password.isEmpty)
+        }
+        .padding(.top, 20)
+    }
 }

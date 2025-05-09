@@ -8,9 +8,9 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .center, spacing: 24) {
                     // MARK: - Profile Section
-                    Text("my page")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading, 16)
+//                    Text("my page")
+//                        .frame(maxWidth: .infinity, alignment: .leading)
+//                        .padding(.leading, 16)
                     ZStack{
                         RoundedRectangle(cornerRadius: 16)
                                 .fill(Color.gray.opacity(0.1))

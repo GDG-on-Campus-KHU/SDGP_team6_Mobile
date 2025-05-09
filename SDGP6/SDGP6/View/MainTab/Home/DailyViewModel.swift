@@ -18,7 +18,7 @@ struct CategoryUpdateRequest: Codable {
 // MARK: - API 서비스
 class CategorizeService {
     static func fetchCarbonFigure(payerName: String, amount: String) async throws -> CategorizeResponse {
-        guard let url = URL(string: "https://ef-server-jaclg44nla-du.a.run.app/categorize") else {
+        guard let url = URL(string: "https://carbon-api-305709153081.us-central1.run.app") else {
             throw URLError(.badURL)
         }
 

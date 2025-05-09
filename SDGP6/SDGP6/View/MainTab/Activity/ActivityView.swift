@@ -2,7 +2,6 @@
 //  ActivityView.swift
 //  SDGP6
 //
-//  Created by HanJW on 5/8/25.
 //
 
 import SwiftUI

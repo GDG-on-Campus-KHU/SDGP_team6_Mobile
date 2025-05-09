@@ -7,42 +7,46 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedTab: MainTabType = .home
+    @StateObject private var mainTabViewModel = MainTabViewModel()
+    @EnvironmentObject var authViewModel: AuthenticationViewModel
     
     var body: some View {
-//        TabView(selection: $selectedTab) {
-//            ForEach(MainTabType.allCases, id: \.self) { tab in
-//                Group {
-//                    switch tab {
-//                    case .home:
-//                        HomeView()
-//                    case .activity:
-//                        ActivityView()
-//                    case .setting:
-//                        Color.blackFix
-//                    }
-//                }
-//            }
-//        }
-        
-        TabView(selection: $selectedTab) {
-            UserHomeView()
+        TabView(selection: $mainTabViewModel.selectedTab) {
+            HomeView()
                 .tabItem {
                     Image(
-                        tabBarViewModel.selectedTab == .userHome
-                        ? "ic_home_black"
-                        : "ic_home_gray")
+                        mainTabViewModel.selectedTab == .home
+                        ? "ic_home_bk"
+                        : "ic_home_gr")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 160, height: 160)
                 }
-                .tag(Tab.userHome)
+                .tag(MainTabType.home)
             
-            StudyHomeView()
+            TransactionView(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidGVzdC11c2VyLTEiLCJleHAiOjE3MDAwMDAwMDB9.abc123signature")
                 .tabItem {
                     Image(
-                        tabBarViewModel.selectedTab == .studyHome
-                        ? "ic_cal_black"
-                        : "ic_cal_gray")
+                        mainTabViewModel.selectedTab == .activity
+                        ? "ic_activity_bk"
+                        : "ic_activity_gr")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 160, height: 160)
                 }
-                .tag(Tab.studyHome)
+                .tag(MainTabType.activity)
+            
+            SettingView()
+                .tabItem {
+                    Image(
+                        mainTabViewModel.selectedTab == .setting
+                        ? "ic_setting_bk"
+                        : "ic_setting_gr")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 160, height: 160)
+                }
+                .tag(MainTabType.setting)
         }
     }
 }

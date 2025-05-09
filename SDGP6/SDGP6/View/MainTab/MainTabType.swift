@@ -27,29 +27,36 @@ enum MainTabType: CaseIterable {
 //    }
 }
 
-class TabBarViewModel: ObservableObject {
+class MainTabViewModel: ObservableObject {
     @Published var selectedTab: MainTabType
     @Published var homeCount: Int
     @Published var activityCount: Int
+    @Published var settingCount: Int
     
     init(
         selectedTab: MainTabType = .home,
         homeCount: Int = 0,
-        activityCount: Int = 0
+        activityCount: Int = 0,
+        settingCount: Int = 0
     ) {
         self.selectedTab = selectedTab
         self.homeCount = homeCount
         self.activityCount = activityCount
+        self.settingCount = settingCount
     }
 }
 
-extension TabBarViewModel {
+extension MainTabViewModel {
     func setHome(_ count: Int) {
         homeCount = count
     }
     
     func setActivity(_ count: Int) {
         activityCount = count
+    }
+    
+    func setSetting(_ count: Int) {
+        settingCount = count
     }
     
     func changeSelectedTab(_ tab: MainTabType) {

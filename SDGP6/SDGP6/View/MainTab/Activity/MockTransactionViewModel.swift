@@ -23,3 +23,4 @@ class MockTransactionViewModel: ObservableObject {
         MockTransaction(name: "서점", amount: 27000, accountNumber: "110-111-222333", bankCode: "081", date: Date().addingTimeInterval(-172800))
     ]
 }
+
